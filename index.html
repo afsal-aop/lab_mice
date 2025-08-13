@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Virtual Mouse Project</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.162.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.162.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body
+    class="bg-slate-900 text-slate-100 p-4 sm:p-8 flex flex-col items-center min-h-screen"
+  >
+    <!-- Page Title and Description -->
+    <header class="text-center mb-8 w-full max-w-4xl">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-2">
+        Virtual Lab Mouse
+      </h1>
+      <p class="text-md sm:text-lg text-slate-400">
+        A measurement to save lives.
+      </p>
+    </header>
+
+    <!-- Main content area for the virtual mouse and message box -->
+    <main
+      class="w-full max-w-5xl flex-grow flex flex-col items-center justify-center bg-slate-800 rounded-3xl shadow-2xl p-6 sm:p-10 mb-8 relative border border-slate-700"
+    >
+      <!-- Canvas for the 3D mouse model -->
+      <canvas
+        id="webgl-canvas"
+        class="w-full h-80 sm:h-96 rounded-2xl border-2 border-slate-700"
+      ></canvas>
+
+      <!-- Message box for simulation feedback -->
+      <div
+        id="message-box"
+        class="absolute bottom-4 left-1/2 -translate-x-1/2 p-3 rounded-lg bg-blue-600 text-white shadow-lg transition-all duration-300 opacity-0 invisible"
+      >
+        Ready to inject!
+      </div>
+    </main>
+
+    <!-- Control panel below the mouse area -->
+    <footer
+      class="w-full max-w-5xl bg-slate-800 rounded-3xl shadow-2xl p-4 sm:p-8 border border-slate-700"
+    >
+      <div class="flex justify-center mb-6">
+        <!-- Tabs for the main controls -->
+        <button
+          id="tab-components"
+          class="px-6 py-3 font-semibold text-lg border-b-4 border-blue-500 text-white transition-colors duration-200 focus:outline-none"
+        >
+          Components
+        </button>
+        <button
+          id="tab-doses"
+          class="px-6 py-3 font-semibold text-lg border-b-4 border-transparent text-slate-400 hover:text-white transition-colors duration-200 focus:outline-none"
+        >
+          Doses
+        </button>
+        <button
+          id="tab-inject"
+          class="px-6 py-3 font-semibold text-lg border-b-4 border-transparent text-slate-400 hover:text-white transition-colors duration-200 focus:outline-none"
+        >
+          Inject
+        </button>
+      </div>
+
+      <!-- Content area for the selected tab -->
+      <div
+        id="tab-content"
+        class="min-h-[100px] flex items-center justify-center"
+      >
+        <!-- Components content (default active) -->
+        <div
+          id="content-components"
+          class="flex flex-wrap gap-2 justify-center"
+        >
+          <!-- Component buttons will be dynamically added here -->
+        </div>
+
+        <!-- Doses content -->
+        <div id="content-doses" class="hidden flex-wrap gap-2 justify-center">
+          <!-- Dose buttons will be dynamically added here -->
+        </div>
+
+        <!-- Inject content -->
+        <div id="content-inject" class="hidden">
+          <button
+            id="inject-button"
+            class="w-full mt-2 px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-red-600 hover:bg-red-700 text-white disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-gray-400"
+            disabled
+          >
+            Run Simulation
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
